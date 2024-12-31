@@ -1,0 +1,118 @@
+﻿<Window x:Class="MunicipalityPortal.EventSubmissionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalityPortal"
+        mc:Ignorable="d"
+        Title="Submit New Event - Greenville Municipality Portal" Height="700" Width="1000"
+        Background="#F0F4F8">
+
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,10,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="InputStyle" TargetType="Control">
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#3498DB" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Post An Event or Make An Annoucement" FontSize="32" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Share your event/annoucement with the Greenville community" FontSize="18" Foreground="White" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Border Background="White" Margin="20" Padding="20" CornerRadius="5">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Title -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Title:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource InputStyle}"/>
+
+                    <!-- Description -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Description:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Style="{StaticResource InputStyle}"/>
+
+                    <!-- Date -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Date:" Style="{StaticResource LabelStyle}"/>
+                    <DatePicker Grid.Row="2" Grid.Column="1" SelectedDate="{Binding Date}" Style="{StaticResource InputStyle}"/>
+
+                    <!-- Category -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Category:" Style="{StaticResource LabelStyle}"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Categories}" SelectedItem="{Binding Category}" Style="{StaticResource InputStyle}"/>
+
+                    <!-- Location -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Location Address:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Location}" Style="{StaticResource InputStyle}" ToolTip="E.g., 23 Main St, Springfield Park, Greenville"/>
+
+                    <!-- Tags -->
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Tags:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding TagsInput}" Style="{StaticResource InputStyle}"/>
+
+                    <!-- Thumbnail -->
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Thumbnail (if applicable):" Style="{StaticResource LabelStyle}"/>
+                    <Grid Grid.Row="6" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" Text="{Binding ThumbnailImagePath}" IsReadOnly="True" Style="{StaticResource InputStyle}"/>
+                        <Button Grid.Column="1" Content="Select Image" Command="{Binding SelectImageCommand}" Margin="10,0,0,10" Padding="10,5" Background="#2ECC71" Foreground="White">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                            </Button.Effect>
+                        </Button>
+                    </Grid>
+
+                    <!-- Image Preview -->
+                    <Image Grid.Row="7" Grid.Column="1" Source="{Binding ThumbnailImage}" MaxHeight="150" MaxWidth="150" Stretch="Uniform" Margin="0,10,0,20"/>
+
+                    <!-- Submit Button -->
+                    <Button Grid.Row="8" Grid.Column="1" Content="Submit Event" Command="{Binding SubmitEventCommand}" 
+                            HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="40" Width="150" 
+                            Background="#E74C3C" Foreground="White" FontSize="16">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </Grid>
+            </Border>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <TextBlock Grid.Row="2" Text="© 2024 Greenville Municipality. All rights reserved." 
+                   HorizontalAlignment="Center" Margin="0,10"/>
+    </Grid>
+</Window>

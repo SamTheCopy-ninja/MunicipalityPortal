@@ -1,0 +1,127 @@
+﻿<Window x:Class="MunicipalityPortal.ReportIssues"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalityPortal"
+        mc:Ignorable="d"
+        Title="Report Issues - Greenville Municipality Portal" Height="700" Width="1000"
+        Background="#F0F4F8">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="PdfIconTemplate">
+            <Viewbox Width="48" Height="48">
+                <Canvas Width="24" Height="24">
+                    <Path Data="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M10.92,12.31C10.68,11.54 10.15,9.08 11.55,9.04C12.95,9 12.03,12.16 12.03,12.16C12.42,13.65 14.05,14.72 14.05,14.72C14.55,14.57 17.4,14.24 17,15.72C16.57,17.2 13.5,15.81 13.5,15.81C11.55,15.95 10.09,16.47 10.09,16.47C8.96,18.58 7.64,19.5 7.1,18.61C6.43,17.5 9.23,16.07 9.23,16.07C10.68,13.72 10.92,12.31 10.92,12.31M11.57,13.15C11.17,14.45 10.37,15.84 10.37,15.84C11.22,15.5 13.08,15.11 13.08,15.11C11.94,14.11 11.57,13.15 11.57,13.15M14.71,15.32C14.71,15.32 16.46,15.97 16.5,15.71C16.57,15.44 15.17,15.2 14.71,15.32M9.66,16.97C9.66,16.97 8.6,18.35 8.96,18.53C9.33,18.71 9.95,17.8 9.66,16.97M11.41,10.05C11.41,10.05 10.26,9.74 10.09,10.25C9.91,10.77 11.41,10.05 11.41,10.05Z" 
+                          Fill="#FF0000"/>
+                </Canvas>
+            </Viewbox>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#3498DB" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Report Issues" FontSize="32" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Help us streamline our municipal services by reporting issues in the community" FontSize="18" Foreground="White" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Margin="40,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column: Form -->
+                <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                    <TextBlock Text="Location Address:" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBox Name="LocationTextBox" Width="400" Height="30" TextChanged="UpdateProgress" ToolTip="E.g., 23 Main St, Springfield Park, Greenville"/>
+
+                    <TextBlock Text="Category:" FontWeight="Bold" Margin="0,20,0,5"/>
+                    <ComboBox Name="CategoryComboBox" Width="400" Height="30" SelectionChanged="UpdateProgress">
+                        <ComboBoxItem Content="Garbage Collection Issues" />
+                        <ComboBoxItem Content="Recycling Issues" />
+                        <ComboBoxItem Content="Littering or Illegal Dumping" />
+                        <ComboBoxItem Content="Street Cleaning Needed" />
+                        <ComboBoxItem Content="Potholes or Road Damage" />
+                        <ComboBoxItem Content="Sidewalk or Pavement Damage" />
+                        <ComboBoxItem Content="Traffic Signal Malfunction" />
+                        <ComboBoxItem Content="Streetlight Outage" />
+                        <ComboBoxItem Content="Water Leaks or Sewer Issues" />
+                        <ComboBoxItem Content="Power Outages or Electrical Issues" />
+                        <ComboBoxItem Content="Drainage Problems" />
+                        <ComboBoxItem Content="Playground Equipment Damage" />
+                        <ComboBoxItem Content="Tree Trimming Needed" />
+                        <ComboBoxItem Content="Vandalism or Graffiti" />
+                        <ComboBoxItem Content="Stray Animal Reporting" />
+                        <ComboBoxItem Content="Construction Noise Complaints" />
+                        <ComboBoxItem Content="Building Code Violations" />
+                        <ComboBoxItem Content="Abandoned Properties" />
+                        <ComboBoxItem Content="Bus Shelter Damage" />
+                        <ComboBoxItem Content="Public Health Hazards" />
+                        <ComboBoxItem Content="Flooding or Water Accumulation" />
+                    </ComboBox>
+
+                    <TextBlock Text="Description:" FontWeight="Bold" Margin="0,20,0,5"/>
+                    <RichTextBox Name="DescriptionRichTextBox" Height="150" Width="400" TextChanged="UpdateProgress" />
+
+                    <Button Name="AttachMediaButton" Content="Attach Media" Width="200" Height="40" Margin="0,20,0,0" Click="AttachMediaButton_Click" 
+                            Background="#2ECC71" Foreground="White" FontSize="16">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+
+                    <ProgressBar Name="EngagementProgressBar" Height="20" Width="400" Margin="0,20,0,0" />
+                    <TextBlock Name="EncouragementTextBlock" TextWrapping="Wrap" TextAlignment="Center" Margin="0,10,0,0" FontStyle="Italic" />
+
+                    <Button Name="SubmitButton" Content="Submit Report" Width="200" Height="40" Margin="0,20,0,0" Click="SubmitButton_Click"
+                            Background="#E74C3C" Foreground="White" FontSize="16">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </StackPanel>
+
+                <!-- Right Column: Media Preview and Navigation -->
+                <StackPanel Grid.Column="1" Width="300">
+                    <Border Name="MediaPreviewBorder" Width="280" Height="280" Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed">
+                        <Grid>
+                            <Image Name="MediaPreviewImage" Stretch="Uniform" />
+                            <ContentControl Name="PdfPreviewIcon" Template="{StaticResource PdfIconTemplate}" Visibility="Collapsed" />
+                        </Grid>
+                    </Border>
+                    <TextBlock Name="MediaFileNameTextBlock" TextWrapping="Wrap" TextAlignment="Center" Margin="0,5,0,20" />
+
+                    <Button Name="ViewReportsButton" Content="View Reports" Width="250" Height="50" Click="ViewReportsButton_Click" Margin="0,0,0,10"
+                            Background="#F39C12" Foreground="White" FontSize="18">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+
+                    <Button Name="BackToMenuButton" Content="Back to Main Menu" Width="250" Height="50" Click="BackToMenuButton_Click"
+                            Background="#3498DB" Foreground="White" FontSize="18">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <TextBlock Grid.Row="2" Text="© 2024 Greenville Municipality. All rights reserved." 
+                   HorizontalAlignment="Center" Margin="0,10"/>
+    </Grid>
+</Window>

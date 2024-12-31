@@ -1,0 +1,83 @@
+﻿<Window x:Class="MunicipalityPortal.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Greenville Municipality Portal" Height="700" Width="1000">
+
+    <!-- Grid to host the background image -->
+    <Grid>
+        <!-- Background Image -->
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" 
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <!-- Semi-transparent Overlay for text readability -->
+        <Border Background="#F0F4F8" Opacity="0.2" />
+
+        <!-- Main Content of the Landing Page -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#3498DB" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Greenville Municipality" FontSize="32" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Let's Improve Our Community Together" FontSize="18" Foreground="White" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column: Buttons -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Button Name="ReportIssuesButton" Content="Report Issues" Width="250" Height="60" Margin="0,10" Click="ReportIssuesButton_Click" 
+                            Background="#2ECC71" Foreground="White" FontSize="18">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="LocalEventsButton" Content="Local Events and Announcements" Width="250" Height="60" Margin="0,10"
+                            Background="#E74C3C" FontSize="16" Click="LocalEventsButton_Click" >
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button Name="ServiceRequestStatusButton" Content="Service Request Status" Width="250" Height="60" Margin="0,10"
+                            Background="#F39C12" FontSize="18" Click="ServiceRequestStatusButton_Click">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                        </Button.Effect>
+                    </Button>
+                </StackPanel>
+
+                <!-- Right Column: Community Updates -->
+                <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="20" Margin="10,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Community Portal Updates" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <TextBlock Text="• You can now access Community Events and Announcements!" TextWrapping="Wrap" Margin="0,5"/>
+                        <TextBlock Text="• Service Requests features have now been implemented!" TextWrapping="Wrap" Margin="0,5"/>
+                        <Button Content="See More Updates" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="10,5"
+                                Background="#3498DB" IsEnabled="False"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Footer -->
+            <TextBlock Grid.Row="2" Text="© 2024 Greenville Municipality. All rights reserved." 
+                       HorizontalAlignment="Center" Margin="0,10"/>
+        </Grid>
+    </Grid>
+</Window>
+

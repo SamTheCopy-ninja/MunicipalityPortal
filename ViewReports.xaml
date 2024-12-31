@@ -1,0 +1,90 @@
+﻿<Window x:Class="MunicipalityPortal.ViewReports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalityPortal"
+        mc:Ignorable="d"
+        Title="View Reports - Greenville Municipality Portal" Height="700" Width="1000"
+        Background="#F0F4F8">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#3498DB" Padding="20">
+            <StackPanel>
+                <TextBlock Text="View Reports" FontSize="32" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="Stay informed about community issues" FontSize="18" Foreground="White" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- List of reports -->
+            <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="10" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Reported Issues" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <ListBox Name="ReportsListBox" Height="500" SelectionChanged="ReportsListBox_SelectionChanged"
+                 BorderThickness="0" Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="5" Margin="0,5" Background="#E8F0FE" CornerRadius="5">
+                                    <TextBlock Text="{Binding DisplaySummary}" TextWrapping="Wrap"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+
+            <!-- Scrollable content for issue details and media -->
+            <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="10" Margin="10,0,0,0">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel>
+                        <Button Content="Back to Main Menu" Name="BackButton" Width="200" Height="40" Margin="0,0,0,20" Click="BackButton_Click"
+                                Background="#3498DB" Foreground="White" FontSize="16">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                            </Button.Effect>
+                        </Button>
+
+                        <Image Name="MediaImage" Width="400" Height="400" Stretch="Uniform" Visibility="Collapsed" Margin="0,0,0,20"/>
+
+                        <TextBlock Text="Location:" FontWeight="Bold" Margin="0,10,0,0" FontSize="16"/>
+                        <TextBlock Name="LocationTextBlock" Margin="0,0,0,10" FontSize="14"/>
+
+                        <TextBlock Text="Category:" FontWeight="Bold" Margin="0,10,0,0" FontSize="16"/>
+                        <TextBlock Name="CategoryTextBlock" Margin="0,0,0,10" FontSize="14"/>
+
+                        <TextBlock Text="Description:" FontWeight="Bold" Margin="0,10,0,0" FontSize="16"/>
+                        <TextBox Name="DescriptionTextBox" Height="100" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,10"
+                                 BorderThickness="1" BorderBrush="#BDBDBD" Padding="5" FontSize="14"/>
+
+                        <TextBlock Text="Reported At:" FontWeight="Bold" Margin="0,10,0,0" FontSize="16"/>
+                        <TextBlock Name="ReportedAtTextBlock" Margin="0,0,0,20" FontSize="14"/>
+
+                        <Button Content="View Media" Name="ViewMediaButton" Width="200" Height="40" Margin="0,10,0,0" Click="ViewMediaButton_Click"
+                                Background="#2ECC71"  FontSize="16">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="2" Color="Gray" Opacity="0.5"/>
+                            </Button.Effect>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Footer -->
+        <TextBlock Grid.Row="2" Text="© 2024 Greenville Municipality. All rights reserved." 
+                   HorizontalAlignment="Center" Margin="0,10"/>
+    </Grid>
+</Window>
